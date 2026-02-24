@@ -17,7 +17,7 @@ So get grinding, and don't forget to have fun!
 
 ## 1. Fantastic tools and where to find them
 
-You will be glad to know that we have created some Doker Containers on Hugging Face for you to interact with the more complex protein design tools! To be able to use these tools, you'll just neet to join hugging-science with your account. See https://huggingface.co/hugging-science .
+You will be glad to know that we have created some Docker Containers on Hugging Face for you to interact with the more complex protein design tools! To be able to use these tools, you'll just neet to join hugging-science with your account. See https://huggingface.co/hugging-science .
 
 You can find the following on Hugging Face (with a refresher of what they do):
 
