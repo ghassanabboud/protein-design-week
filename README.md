@@ -22,7 +22,7 @@ You will be glad to know that we have created some Doker Containers on Hugging F
 You can find the following on Hugging Face (with a refresher of what they do):
 
 
-  - RFD3 (RFdiffusion3): All-atom generative diffusion model for designing protein binders, enzymes, symmetric assemblies, and structures with small molecules/metals. Available at: https://huggingface.co/spaces/hugging-science/RFdiffusion3
+  - ** RFD3 (RFdiffusion3): ** All-atom generative diffusion model for designing protein binders, enzymes, symmetric assemblies, and structures with small molecules/metals. Available at: https://huggingface.co/spaces/hugging-science/RFdiffusion3
   -     Input: Protein structures (PDB), JSON or YAML file with contig specifications for constraints (e.g., fixed regions, hotspots).
   -     Output: Novel protein backbones (PDB).
 ​
