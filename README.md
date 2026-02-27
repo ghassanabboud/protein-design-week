@@ -46,7 +46,7 @@ Other tools that are available directly online (either on CoLab folders or serve
   -     Input: PDB/UniProt.
   -     Output: Interface PDBs.
 
-  - **ESM2**: sequence-only protein language model used mainly for embeddings, fitness prediction, mutational scans, zero-shot structure prediction via ESMFold.
+  - **ESM2**: sequence-only protein language model used mainly for embeddings, fitness prediction, mutational scans, zero-shot structure prediction via ESMFold. Docker available on Hugging Face at https://huggingface.co/spaces/hugging-science/ESM2.
   **Zero-Shot Variant Design**
   -     Input: FASTA file with your WT scaffold sequence
   -     Method: Iteratively mask each position → ESM-2 predicts top substitutions     →rank by log-probability→rank by log-probability
