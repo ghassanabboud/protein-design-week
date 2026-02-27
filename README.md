@@ -38,27 +38,34 @@ You can find the following on Hugging Face (with a refresher of what they do):
 
 Other tools that are available directly online (either on CoLab folders or servers, or both) are:
 
-  - AF3 (AlphaFold3):  Structure prediction for protein-ligand/DNA/RNA, excels in static interactions but limited on big conform changes.  Server available at : https://alphafoldserver.com
+  - **AF3** (AlphaFold3):  Structure prediction for protein-ligand/DNA/RNA, excels in static interactions but limited on big conform changes.  Server available at : https://alphafoldserver.com
   -     Input: Sequences/SMILES.
   -     Output: Complexes (PDB).​
 
-  - PeSTo: Transformer for protein interface prediction (with DNA/lipids/ligands/ions), handles MD ensembles. Docker/web at : pesto.epfl.ch.
+  - **PeSTo**: Transformer for protein interface prediction (with DNA/lipids/ligands/ions), handles MD ensembles. Docker/web at : pesto.epfl.ch.
   -     Input: PDB/UniProt.
   -     Output: Interface PDBs.
 
-  - ESM3: Multimodal model for sequence/structure/function design via bidirectional transformers. Classic ESMFold CoLab folder available at : https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/ESMFold.ipynbscrollTo=boFQEwsNQ4Qt . For the veterans, more advanced jupiter notebook CoLab available at : https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/beta/ESMFold_advanced.ipynb
+  - **ESM2**: sequence-only protein language model used mainly for embeddings, fitness prediction, mutational scans, zero-shot structure prediction via ESMFold.
+  **Zero-Shot Variant Design**
+  -     Input: FASTA file with your WT scaffold sequence
+  -     Method: Iteratively mask each position → ESM-2 predicts top substitutions     →rank by log-probability→rank by log-probability
+  -     Output: Variant library (FASTA), probability heatmaps
+  -     Use case: Stability optimization, natural-like redesign
+
+  - **ESM3**: Multimodal model for sequence/structure/function design via bidirectional transformers. Classic ESMFold CoLab folder available at : https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/ESMFold.ipynbscrollTo=boFQEwsNQ4Qt . For the veterans, more advanced jupiter notebook CoLab available at : https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/beta/ESMFold_advanced.ipynb
   -     Input: Partial sequence/structure/function prompts.
   -     Output: Proteins matching your input specs   (e.g., pTM >0.8)
 
-  - BioEmu: Generates structural ensembles to capture protein dynamics/flexibility for function prediction. CoLab folder at : https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/BioEmu.ipynb . BioEmu jupyter notebook available at : https://github.com/sokrypton/ColabFold/blob/main/BioEmu.ipynb
+  - **BioEmu**: Generates structural ensembles to capture protein dynamics/flexibility for function prediction. CoLab folder at : https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/BioEmu.ipynb . BioEmu jupyter notebook available at : https://github.com/sokrypton/ColabFold/blob/main/BioEmu.ipynb
   -     Input: Protein sequences/structures.
   -     Output: Diverse conformations (thousands), free energies (~1 kcal/mol accuracy).
 
-  - BindCraft: Automated pipeline for de novo miniprotein binders via AF2 hallucination, MPNN optimization, and scoring.  CoLab notebook available at : https://colab.research.google.com/github/martinpacesa/BindCraft/blob/main/notebooks/BindCraft.ipynb
+  - **BindCraft**: Automated pipeline for de novo miniprotein binders via AF2 hallucination, MPNN optimization, and scoring.  CoLab notebook available at : https://colab.research.google.com/github/martinpacesa/BindCraft/blob/main/notebooks/BindCraft.ipynb
   -         Input: Target protein structure (PDB).
   -         Output: Binder backbones/sequences (65-150 AA, PDB/FASTA).
 
-  - BoltzDesign1: Inverted model of Boltz - 1  (open source reproduction of AlphaFold3), to enable the design of protein binders for diverse molecular targets without requiring model finetuning. This one is pretty cool cause you can actually change the models' parameters on the CoLab folder (for the more daring hackers ihih). Available on CoLab at : https://colab.research.google.com/github/yehlincho/BoltzDesign1/blob/main/Boltzdesign1.ipynb#scrollTo=lP-SR0lM3jr4
+  - **BoltzDesign1**: Inverted model of Boltz - 1  (open source reproduction of AlphaFold3), to enable the design of protein binders for diverse molecular targets without requiring model finetuning. This one is pretty cool cause you can actually change the models' parameters on the CoLab folder (for the more daring hackers ihih). Available on CoLab at : https://colab.research.google.com/github/yehlincho/BoltzDesign1/blob/main/Boltzdesign1.ipynb#scrollTo=lP-SR0lM3jr4
   -         Input: Normally a YAML file, but on CoLab folder you generate the YAML with an interface.
   -         Output: YOur predicted CIF/PDB file or in FASTA format (to pass through AF3 afterwards)
 
