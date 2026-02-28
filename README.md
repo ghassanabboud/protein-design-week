@@ -35,17 +35,17 @@ You will be glad to know that we have created some Docker Containers on Hugging 
 You can find the following on Hugging Face (with a refresher of what they do):
 
 
-  - RFD3 (RFdiffusion3): All-atom generative diffusion model for designing protein binders, enzymes, symmetric assemblies, and structures with small molecules/metals. Available at: https://huggingface.co/spaces/hugging-science/RFdiffusion3
+  - **RFD3 (RFdiffusion3)**: All-atom generative diffusion model for designing protein binders, enzymes, symmetric assemblies, and structures with small molecules/metals. Available at: https://huggingface.co/spaces/hugging-science/RFdiffusion3
   -     Input: Protein structures (PDB), JSON or YAML file with contig specifications for constraints (e.g., fixed regions, hotspots).
   -     Output: Novel protein backbones (PDB).
 ​
 
-  - LigandMPNN: Deep learning sequence design that models non-protein components like ligands in biomolecular systems. Use it for re-designing your sequences after _de novo_ prediction. Available at : https://huggingface.co/spaces/hugging-science/LigandMPNN
+  - **LigandMPNN**: Deep learning sequence design that models non-protein components like ligands in biomolecular systems. Use it for re-designing your sequences after _de novo_ prediction. Available at : https://huggingface.co/spaces/hugging-science/LigandMPNN
   -     Input: Protein-ligand structures (PDB with atoms).
   -     Output: Optimized amino acid sequences (FASTA).
 ​
 
-  - BoltzGen: Generative model for inverse design of protein/peptide binders to targets, using diffusion on structures with rich specifications (e.g., secondary structure, binding       sites). Available at : https://huggingface.co/spaces/hugging-science/BoltzGen_Demo
+  - **BoltzGen**: Generative model for inverse design of protein/peptide binders to targets, using diffusion on structures with rich specifications (e.g., secondary structure, binding       sites). Available at : https://huggingface.co/spaces/hugging-science/BoltzGen_Demo
   -     Input: Target specs, binding mode info (SMILES/CCD).
   -     Output: Binder structures/sequences.
 
@@ -63,7 +63,7 @@ Other tools that are available directly online (either on CoLab folders or serve
   **Zero-Shot Variant Design**
   -     Input: FASTA file with your WT scaffold sequence
   -     Method: Iteratively mask each position → ESM-2 predicts top substitutions     →rank by log-probability→rank by log-probability
-  -     Output: Variant library (FASTA), probability heatmaps
+  -     Output: embeddings file you can use for Variant library (FASTA), probability heatmaps (python np.load(...) and then use pyplot for plotting the results)
   -     Use case: Stability optimization, natural-like redesign
 
   - **ESM3**: Multimodal model for sequence/structure/function design via bidirectional transformers. Classic ESMFold CoLab folder available at : https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/ESMFold.ipynbscrollTo=boFQEwsNQ4Qt . For the veterans, more advanced jupiter notebook CoLab available at : https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/beta/ESMFold_advanced.ipynb
