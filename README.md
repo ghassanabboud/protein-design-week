@@ -15,7 +15,20 @@ If you have any specific questions about tools or de-bug, coaches are around! Bu
 
 So get grinding, and don't forget to have fun!
 
-## 1. Fantastic tools and where to find them
+## 1. The (clueless) protein engineer's survival guides
+
+The awesome thing about you guys is that you all come from different academic backgrounds - from ML to computer science, to pure wet-lab biology, and who knows what else. For this specific reason, - besides being a protein nerd otherwise you wouldn't be here - you might find the topic of protein design a little bit complicated. 
+
+But fear not you brave bio-soldier! We made some basics survival guides for you to rely on when things seem not to make any sense. In the repo folder ../survival-guides you can find two documents: 
+
+- One survival guide for pure wet-lab biologists approaching 🧬💻 computational protein design
+- One survival guide for ML and computer people starting to get into the world of ✨biology✨ 
+
+(sorry for the emojy, i'm a fan tho)
+
+So, hopefully these docs will help you navigate the world of protein engineering a bit better!
+
+## 2. Fantastic tools and where to find them
 
 You will be glad to know that we have created some Docker Containers on Hugging Face for you to interact with the more complex protein design tools! To be able to use these tools, you'll just neet to join hugging-science with your account. See https://huggingface.co/hugging-science .
 
