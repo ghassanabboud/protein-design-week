@@ -47,7 +47,7 @@ Here is a list of the available models(with a refresher of what they do):
 
 
   - **[RFD3 (RFdiffusion3)](https://huggingface.co/spaces/hugging-science/RFdiffusion3)**: All-atom generative diffusion model for designing protein binders, enzymes, symmetric assemblies, and structures with small molecules/metals.
-  -     Input: Protein structures (PDB), JSON or YAML file with contig specifications for constraints (e.g., fixed regions, hotspots).
+    -   Input: Protein structures (PDB), JSON or YAML file with contig specifications for constraints (e.g., fixed regions, hotspots).
         Output: Novel protein backbones (PDB).
 ​
 
