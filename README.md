@@ -23,9 +23,9 @@ The awesome thing about you guys is that you all come from different academic ba
 But fear not you brave bio-soldier! We made some basics survival guides for you to rely on when things seem not to make any sense. In the repo folder `./survival-guides`, you can find two documents: 
 
 - One survival guide [for pure wet-lab biologists](survival-guides/ML-survival-guide-for-biologists.pdf) approaching 🧬💻 computational protein design
-- One survival guide [for ML and computer people](#TODO add biology survival guide) starting to get into the world of ✨biology✨ 
+- One survival guide [for ML and computer people](survival-guides/coder-survival-guide-to-biology.pdf) starting to get into the world of ✨biology✨ 
 
-(sorry for the emoji, i'm a fan tho)
+(sorry for the emojis, i'm a fan tho)
 
 So, hopefully these docs will help you navigate the world of protein engineering a bit better!
 
@@ -40,7 +40,7 @@ Through our incredible partnership with [Hugging Face](https://huggingface.co/) 
 The advantage of HF Spaces is that they abstract away the need for setting up job configuration files through their extensive and intuitive interfaces. However, we choose to keep the input and output formats of the models as close as possible to the models' command-line interface so that you can learn how to set up protein design jobs independent of the computing infrastructure (or because we were lazy, who knows). That means you'll need to create your YAML/JSON job files, analyze the outputs in Python, etc.
 
 
-Here is a list of the available modelson HF (with a refresher of what they do):
+Here is a list of the available models on HF (with a refresher of what they do):
 
 
   - **[RFD3 (RFdiffusion3)](https://huggingface.co/spaces/hugging-science/RFdiffusion3)**: All-atom generative diffusion model for designing protein binders, enzymes, symmetric assemblies, and structures with small molecules/metals.
@@ -116,6 +116,6 @@ In the tool-kit folder on the repo you can find a notebook with useful functions
 Good luck, and may the best design win!
 
 
-Made, with love, by Alexia, Ghassan, and Emma
+Made with love, by Alexia, Ghassan, Emma, Cris and Asia, with the help of our amazing coaches and partners!
 
 
