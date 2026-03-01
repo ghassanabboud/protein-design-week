@@ -47,8 +47,8 @@ Here is a list of the available models(with a refresher of what they do):
 
 
   - **[RFD3 (RFdiffusion3)](https://huggingface.co/spaces/hugging-science/RFdiffusion3)**: All-atom generative diffusion model for designing protein binders, enzymes, symmetric assemblies, and structures with small molecules/metals.
-    -   Input: Protein structures (PDB), JSON or YAML file with contig specifications for constraints (e.g., fixed regions, hotspots).
-        Output: Novel protein backbones (PDB).
+    -     Input: Protein structures (PDB), JSON or YAML file with contig specifications for constraints (e.g., fixed regions, hotspots).
+          Output: Novel protein backbones (PDB).
 ​
 
   - **LigandMPNN**: Deep learning sequence design that models non-protein components like ligands in biomolecular systems. Use it for re-designing your sequences after _de novo_ prediction. Available at : https://huggingface.co/spaces/hugging-science/LigandMPNN
