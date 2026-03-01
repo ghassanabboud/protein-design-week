@@ -75,32 +75,32 @@ While HF Spaces are great for rapid prototyping and easy access, they have limit
 The world of computational protein design is rapidly growing and democratizing, so there are many tools available online that you can use for your design projects! Here is a list of other tools that are available directly online (either on CoLab folders or servers, or both). Note that the typical limitations of such tools are the hardware available (e.g only T4 on Colab without purchasing credits) and rate limits imposed by servers (e.g. 30 jobs/day on AF3).
 
   - [**AF3 (AlphaFold3)**](https://alphafoldserver.com): State-of-the-art structure prediction for protein-ligand/DNA/RNA, excels in static interactions but limited on big conformational changes.
-    - Input: Sequences/SMILES.
-      Output: Complexes (PDB).
+    -     Input: Sequences/SMILES.
+          Output: Complexes (PDB).
 
   - [**PeSTo**](https://pesto.epfl.ch): Transformer for protein interface prediction (with DNA/lipids/ligands/ions), handles MD ensembles. Docker/web available.
-    - Input: PDB/UniProt.
-      Output: Interface PDBs.
+    -     Input: PDB/UniProt.
+          Output: Interface PDBs.
 
   - [**ESMFold on Colab**](https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/ESMFold.ipynb?scrollTo=boFQEwsNQ4Qt): Structure prediction from sequence using ESM-2 embeddings without MSA, faster than AF2 but less accurate. [Advanced notebook](https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/beta/ESMFold_advanced.ipynb) also available.
-    - Input: Protein Sequences (FASTA).
-      Output: Predicted 3D structures (PDB).
+    -     Input: Protein Sequences (FASTA).
+          Output: Predicted 3D structures (PDB).
 
   - [**ESM3**](https://forge.evolutionaryscale.ai/): Multimodal model that extends ESM-2 to include structure via geometric transformers. Can be used for fitness prediction, folding or even generation!
-    - Input: Partial sequence/structure/function prompts for generation tasks
-      Output: sequence + structure for generation tasks.
+    -     Input: Partial sequence/structure/function prompts for generation tasks
+          Output: sequence + structure for generation tasks.
 
   - [**BioEmu on CoLab**](https://colab.research.google.com/github/sokrypton/ColabFold/blob/main/BioEmu.ipynb): Generates structural ensembles to capture protein dynamics/flexibility for function prediction. [Jupyter notebook](https://github.com/sokrypton/ColabFold/blob/main/BioEmu.ipynb) also available.
-    - Input: Protein sequences/structures.
-      Output: Diverse conformations (thousands), free energies (~1 kcal/mol accuracy).
+    -     Input: Protein sequences/structures.
+          Output: Diverse conformations (thousands), free energies (~1 kcal/mol accuracy).
 
   - [**BindCraft on CoLab**](https://colab.research.google.com/github/martinpacesa/BindCraft/blob/main/notebooks/BindCraft.ipynb): Automated all-in-one pipeline for de novo miniprotein binders via AF2 hallucination, MPNN optimization, and scoring.
-    - Input: Target protein structure (PDB). 
-      Output: Binder backbones/sequences (65-150 AA, PDB/FASTA).
+    -     Input: Target protein structure (PDB). 
+          Output: Binder backbones/sequences (65-150 AA, PDB/FASTA).
 
   - [**BoltzDesign1 on CoLab**](https://colab.research.google.com/github/yehlincho/BoltzDesign1/blob/main/Boltzdesign1.ipynb?scrollTo=lP-SR0lM3jr4): Inverted model of Boltz-1 (open source reproduction of AlphaFold3), enables design of protein binders for diverse molecular targets without model finetuning. You can change model parameters in the CoLab folder.
-    - Input: YAML file (generated via interface in CoLab). 
-      Output: Predicted CIF/PDB file or FASTA format (to pass through AF3 afterwards).
+    -     Input: YAML file (generated via interface in CoLab). 
+          Output: Predicted CIF/PDB file or FASTA format (to pass through AF3 afterwards).
 
 
 If - as a good veteran of protein design - you know other tools to use for the hackathon, feel free to do so, also open a PR to add to this list! We look forward to see your designs on Sunday. 
