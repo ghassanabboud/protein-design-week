@@ -1,13 +1,14 @@
 # Protein Design Week - Official Repo 2026
-Official Repository of the first edition of Protein Design Week @ EPFL, March 2026. This repository contains code snippets, tutorials and survival guides to get you started!
+
+Through a collaboration between the EPFL student association [SV industry](https://www.linkedin.com/company/sv-industry/posts/?feedView=all) and MAKE project [Designing Life with AI (DLAI)](https://designinglifewithai.ch/), this first edition of Protein Design Week @ EPFL helps students discover the world of computational protein design through lab visits, conferences and a 2-day hackathon!
 
 <img width="1233" height="692" alt="image" src="https://github.com/user-attachments/assets/0b0c2b6e-bb17-4420-84d6-40a686cbe71a" />
 
 ## Intro
 
-Welcome Hackers! This repo is your go-to guide throughout the week-end Hackathon. It gathers a collection of protein design tools that you learned about during the workshop, and that you can use with confidence throughout the weekend to generate awesome predictions! The repo also contains some specific helpers on more complicated tools like RFD3, as well as your go-to functions for pdb pre-processing and predictions analyses (like MSA or RMSD).
+Welcome Hackers! This repo is your go-to guide throughout the week-end Hackathon. It gathers code snippets, tutorials and survival guides to get you started! It also provides a centralized reference for protein design tools you learned about during the workshop so that you can use them with confidence throughout the weekend to generate awesome new proteins! More specifically, it containes specific guides for more complicated tools like RFD3, as well as your go-to functions for PDB pre-processing and predictions analyses (like MSA or RMSD).
 
-If you have any specific questions about tools or de-bug, coaches are around! But, before bothering us... remember the learner drill:
+If you have any specific questions about tools or or need help debugging, coaches are around! But, before bothering us... remember the learner drill:
 
     1.   Google it, 
     2.   Ask your favourite AI agent,
@@ -19,25 +20,35 @@ So get grinding, and don't forget to have fun!
 
 The awesome thing about you guys is that you all come from different academic backgrounds - from ML to computer science, to pure wet-lab biology, and who knows what else. For this specific reason, - besides being a protein nerd otherwise you wouldn't be here - you might find the topic of protein design a little bit complicated. 
 
-But fear not you brave bio-soldier! We made some basics survival guides for you to rely on when things seem not to make any sense. In the repo folder ../survival-guides you can find two documents: 
+But fear not you brave bio-soldier! We made some basics survival guides for you to rely on when things seem not to make any sense. In the repo folder `./survival-guides`, you can find two documents: 
 
-- One survival guide for pure wet-lab biologists approaching 🧬💻 computational protein design
-- One survival guide for ML and computer people starting to get into the world of ✨biology✨ 
+- One survival guide [for pure wet-lab biologists](survival-guides/ML-survival-guide-for-biologists.pdf) approaching 🧬💻 computational protein design
+- One survival guide [for ML and computer people](#TODO add biology survival guide) starting to get into the world of ✨biology✨ 
 
-(sorry for the emojy, i'm a fan tho)
+(sorry for the emoji, i'm a fan tho)
 
 So, hopefully these docs will help you navigate the world of protein engineering a bit better!
 
 ## 2. Fantastic tools and where to find them
 
-You will be glad to know that we have created some Docker Containers on Hugging Face for you to interact with the more complex protein design tools! To be able to use these tools, you'll just neet to join hugging-science with your account. See https://huggingface.co/hugging-science .
+### a) HuggingFace Spaces 🤗
 
-You can find the following on Hugging Face (with a refresher of what they do):
+<!-- 
+A Hugging Face Space is a simple, free hosting platform that allows users to 
+easily deploy and share machine learning applications and interactive demos 
+without requiring complex infrastructure setup. Spaces enable developers to 
+showcase their models, tools, and applications in a user-friendly web interface 
+that others can access and interact with directly through a browser.
+-->
+Through our incredible partnership with [Hugging Face](https://huggingface.co/) for this event, we've deployed some pretty neat HF Spaces for you to easily interact with your favorite protein design tools! HF Spaces is simply a hosting platform that allows users to easily share machine learning applications through interactive demos on the web. It provides different tiers of computing infrastructure, from CPU-only options to H200 GPUs! To use these tools, you'll simply need to create an account on Hugging Face and join the [hugging-science organization](https://huggingface.co/hugging-science).
 
 
-  - **RFD3 (RFdiffusion3)**: All-atom generative diffusion model for designing protein binders, enzymes, symmetric assemblies, and structures with small molecules/metals. Available at: https://huggingface.co/spaces/hugging-science/RFdiffusion3
+Here is a list of the available models(with a refresher of what they do):
+
+
+  - **[RFD3 (RFdiffusion3)](https://huggingface.co/spaces/hugging-science/RFdiffusion3)**: All-atom generative diffusion model for designing protein binders, enzymes, symmetric assemblies, and structures with small molecules/metals.
   -     Input: Protein structures (PDB), JSON or YAML file with contig specifications for constraints (e.g., fixed regions, hotspots).
-  -     Output: Novel protein backbones (PDB).
+        Output: Novel protein backbones (PDB).
 ​
 
   - **LigandMPNN**: Deep learning sequence design that models non-protein components like ligands in biomolecular systems. Use it for re-designing your sequences after _de novo_ prediction. Available at : https://huggingface.co/spaces/hugging-science/LigandMPNN
