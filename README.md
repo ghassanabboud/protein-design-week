@@ -106,12 +106,20 @@ The world of computational protein design is rapidly growing and democratizing, 
 If - as a good veteran of protein design - you know other tools to use for the hackathon, feel free to do so, also open a PR to add to this list! We look forward to see your designs on Sunday. 
 
 
-## 2. Useful Protein Designer ToolKit
+## 3. Useful Protein Designer ToolKit
 
 In the tool-kit folder on the repo you can find a notebook with useful functions and pipelines for (1) preparing your input files that you will feed your favourite design model, and (2) analysing how good your predictions are after your runs. Here you'll find pieplines for things like RMSD, structural analysis, PDB parsing and handling, and more. Have fun! 
 
+## 4. Further learning resources
 
+Do you want to learn more about computational protein design after the hackathon? Here's a list of resources to keep you busy:
 
+- [**RosettaCommons Youtube Channel**](https://www.youtube.com/@RosettaCommons): Lectures, tutorials, model deep dives and workflow explanations from Rosetta Commons, a community of researchers created by Nobel laureate David Baker whose goal is to advance open-source protein structure prediction and design. 
+- [**DL4Proteins**](https://github.com/Graylab/DL4Proteins-notebooks): Collection of Jupyter notebooks from the Gray Lab at Johns Hopkins University (who have proposed one of the hackathon projects!). This series is perfect for people who want to dive further into the architecture of these models rather than just their use cases. What is a transformer and why is it suitable for sequence representation? How do diffusion networks create diverse structures? All questions you'll find answers to in this amazing resource.
+- [**Proteinbase**](http://proteinbase.com/): Platform that hosts the results of [Adaptyv Bio's](https://www.adaptyvbio.com/) famed protein design challenges (another one of our project sponsors!). Use this to explore how different design strategies have worked out in real use-cases.
+- [**Pyrosetta notebooks**](https://rosettacommons.github.io/PyRosetta.notebooks/): Before deep learning entered the game, physics-based modeling was the go-to approach to explore the conformational space of proteins. PyRosetta remains crucial for protein visualization, structure refinement and energetic analysis and is integrated in many hybrid AI-physics pipelines.  
+
+These are some of many resources. For a more extensive list, Adrian Jasinski's at Ardigen has compiled [this list.](https://docs.google.com/document/d/1gGcNGDDszT2zWFNT5icj5L4o3OsonTTs1KifXpztUdM/edit?tab=t.0) Are you bored of scrolling through resources and want to jump straight into the action? Then you might just consider joining the MAKE project [Designing Life with AI (DLAI) @ EPFL](https://designinglifewithai.ch/) ;)
 
 Good luck, and may the best design win!
 
