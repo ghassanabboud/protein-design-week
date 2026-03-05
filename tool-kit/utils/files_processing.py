@@ -12,6 +12,11 @@ import biotite.structure.io.pdb as pdb
 import biotite.structure.io.pdbx as pdbx
 import warnings
 from Bio.PDB.PDBExceptions import PDBConstructionWarning
+from Bio import BiopythonParserWarning
+import logging
+
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 # ======================================================
 # Tools for file handling and structure processing
@@ -189,68 +194,130 @@ def batch_convert_pdb_to_cif(input_dir: str, output_folder: str, recursive: bool
 warnings.simplefilter('ignore', PDBConstructionWarning)
 warnings.filterwarnings('ignore', category=UserWarning)
 
-def batch_structures_to_fasta(input_dir: str | Path, output_dir: str | Path, merged_output: bool = False, recursive: bool = True):
+def batch_structures_to_fasta(input_dir: str | Path, output_dir: str | Path, single_output: bool = False, 
+                              formats: tuple[str, ...] = (".pdb", ".cif"), deduplicate: bool = False, min_length: int = 1, recursive: bool = True) -> dict:
     """
-    Batch converts structure files (PDB/CIF) in the specified input directory to FASTA format.
-    Each chain in the structure files is extracted as a separate FASTA record. The output can be either individual FASTA files for each structure or a single merged FASTA file containing all chains.
+    Batch converts structure files (PDB/CIF) in the specified input directory to FASTA format with enhanced features.
+    Each chain in the structure files is extracted as a separate FASTA record. The output can be either individual FASTA files for each structure or a single merged FASTA file containing all chains. The function also supports optional deduplication of sequences and filtering by minimum sequence length.
+    NOTE: Some structure file formats may not work, especilly certain CIF files. Convert to PDB first if you encounter issues.
     Inputs:
         - input_dir: Path to the directory containing structure files (PDB/CIF) to be converted.
         - output_dir: Path to the directory where the FASTA files will be saved.
-        - merged_output: If True, all chains will be saved in a single FASTA file named "all_sequences.fasta". If False, each structure will be saved as a separate FASTA file (default: False).
-        - recursive: Whether to search for structure files in subdirectories (default: True).
-    Output (no return value):
-        - Saves the extracted sequences in FASTA format in the specified output directory, either as individual files or a single merged file depending on the merged_output flag.
+        - single_output: If True, all chains will be saved in a single FASTA file named "all_sequences.fasta". If False, each structure will be saved as a separate FASTA file (default: False).
+        - formats: A tuple of file extensions to process (default: (".pdb", ".cif")).
+        - deduplicate: If True, duplicate sequences will be removed across all files (default: False).
+        - min_length: Minimum sequence length to include in the output (default: 1).
+    Output:
+        - A dictionary containing statistics about the processing, including the number of files processed, chains extracted, files skipped, and duplicates removed.
+    Saved FASTA files will be located in the specified output directory, either as individual files or a single merged file depending on the single_output flag.
     """
+
+    # don't show BioPython warning about parsing issues, which are common with certain CIF files
+    warnings.simplefilter('ignore', PDBConstructionWarning)
+    warnings.filterwarnings('ignore', category=UserWarning)
+    warnings.simplefilter('ignore', BiopythonParserWarning)
+
     input_dir = Path(input_dir)
     output_dir = Path(output_dir)
+
+    if not input_dir.exists():
+        raise FileNotFoundError(f"Input directory not found: {input_dir}")
+    if not input_dir.is_dir():
+        raise NotADirectoryError(f"Input path is not a directory: {input_dir}")
+
     output_dir.mkdir(parents=True, exist_ok=True)
 
-    if merged_output:
-        merged_path = output_dir / "all_sequences.fasta"
-        merged_path.unlink(missing_ok=True)
+    # Map extension → BioPython parser format string
+    FORMAT_MAP = {".pdb": "pdb-atom", ".cif": "cif-atom"}
+    formats_lower = {f.lower() for f in formats}
+    unknown = formats_lower - FORMAT_MAP.keys()
+    if unknown:
+        raise ValueError(f"Unsupported format(s): {unknown}. Choose from {set(FORMAT_MAP)}")
 
-    total_chains = 0
-    structure_files = find_structure_files(input_dir, extensions=[".pdb", ".cif"], recursive=recursive)
-    
+    merged_path = output_dir / "all_sequences.fasta"
+    if single_output and merged_path.exists():
+        merged_path.unlink()
+        logger.info("Removed existing merged output file.")
+
+    stats = {"processed": 0, "skipped": 0, "total_chains": 0, "duplicates": 0}
+    seen_sequences: set[str] = set()
+
+    if recursive:
+        structure_files = sorted(
+            p for p in input_dir.rglob("*")
+            if p.suffix.lower() in formats_lower
+        )
+    else:
+        structure_files = sorted(
+            p for p in input_dir.iterdir()
+            if p.suffix.lower() in formats_lower
+        )
+    if not structure_files:
+        logger.warning(f"No structure files found in {input_dir} with extensions {formats_lower}")
+        return stats
+
     for path in structure_files:
-        if isinstance(path, str):
-            path = Path(path)
-        
-        records = []
-        
-        # Try multiple parsers in order of reliability
-        parsers = ["pdb-atom"]  # Most robust for both formats
-        
-        if path.suffix.lower() == '.pdb':
-            parsers.insert(0, "pdb-seqres")  # PDBs might have full sequences
-            
-        for fmt in parsers:
-            try:
-                records = list(SeqIO.parse(path, fmt))
-                if records:
-                    print(f"Processed {path.name} ({fmt}): {len(records)} chains")
-                    break
-            except Exception:
-                continue
-        
-        if not records:
-            print(f"Skipped {path.name}: no valid records")
+        bio_format = FORMAT_MAP[path.suffix.lower()]
+        try:
+            records = list(SeqIO.parse(str(path), bio_format))
+        except Exception as exc:
+            logger.error(f"Failed to parse {path.name}: {exc}")
+            stats["skipped"] += 1
             continue
 
-        # Clean IDs
+        if not records:
+            logger.warning(f"Skipped {path.name}: no ATOM records found.")
+            stats["skipped"] += 1
+            continue
+
+        # Filter and optionally deduplicate
+        filtered: list[SeqRecord] = []
         for rec in records:
-            rec.description = ""
-            if '????' in rec.id:
-                rec.id = f"{path.stem}:{rec.id.split(':')[-1] if ':' in rec.id else rec.id}"
+            seq_str = str(rec.seq)
 
-        total_chains += len(records)
-        if merged_output:
-            for rec in records:
-                rec.id = f"{path.stem}|{rec.id}"
-            with open(merged_path, "a") as handle:
-                SeqIO.write(records, handle, "fasta")
-        else:
-            out_path = output_dir / f"{path.stem}.fasta"
-            SeqIO.write(records, out_path, "fasta")
+            if len(seq_str) < min_length:
+                logger.debug(f"  Chain {rec.id} too short ({len(seq_str)} aa), skipping.")
+                continue
 
-    print(f"Total: {total_chains} chains processed")
+            if deduplicate:
+                if seq_str in seen_sequences:
+                    logger.debug(f"  Duplicate sequence for chain {rec.id} in {path.name}, skipping.")
+                    stats["duplicates"] += 1
+                    continue
+                seen_sequences.add(seq_str)
+
+            rec = SeqRecord(
+                rec.seq,
+                id=f"{path.stem}|{rec.id}" if single_output else rec.id,
+                description="",
+            )
+            filtered.append(rec)
+
+        if not filtered:
+            logger.warning(f"Skipped {path.name}: all chains filtered out.")
+            stats["skipped"] += 1
+            continue
+
+        try:
+            if single_output:
+                with open(merged_path, "a") as handle:
+                    SeqIO.write(filtered, handle, "fasta")
+            else:
+                out_path = output_dir / f"{path.stem}.fasta"
+                SeqIO.write(filtered, str(out_path), "fasta")
+        except OSError as exc:
+            logger.error(f"Failed to write output for {path.name}: {exc}")
+            stats["skipped"] += 1
+            continue
+
+        stats["processed"] += 1
+        stats["total_chains"] += len(filtered)
+        logger.info(f"  {path.name}: {len(filtered)} chain(s) written.")
+
+    logger.info(
+        f"\nDone. Processed: {stats['processed']} files | "
+        f"Chains: {stats['total_chains']} | "
+        f"Skipped: {stats['skipped']} | "
+        f"Duplicates removed: {stats['duplicates']}"
+    )
+    return stats
