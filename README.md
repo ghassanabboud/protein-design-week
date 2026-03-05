@@ -60,7 +60,7 @@ Here is a list of the available models on HF (with a refresher of what they do):
     -     Input: Protein sequences (FASTA).
           Output: Embeddings (numpy arrays) and Pseudo-Perplexity scores. use np.load(...) to access embeddings.
 
-  - **[BoltzGen](https://huggingface.co/spaces/hugging-science/BoltzGen_Demo)**: Generative model that designs both sequence and structure of protein/peptide binders together. It uses diffusion on structures with rich specifications (e.g., secondary structure, binding sites). Substitutes the entire RFD3+LigandMPNN+RF3/AF3 pipeline with a single model but needs long runtimes for complex designs.
+  - **[BoltzGen](https://huggingface.co/spaces/hugging-science/BoltzGen)**: Generative model that designs both sequence and structure of protein/peptide binders together. It uses diffusion on structures with rich specifications (e.g., secondary structure, binding sites). Substitutes the entire RFD3+LigandMPNN+RF3/AF3 pipeline with a single model but needs long runtimes for complex designs.<u> **Because of BoltzGen's long runtimes, we do not recommend using this space as your sole design strategy for the hackathon.**</u> We still provide the Space for pedagogical purposes but it was not as tested as the other Spaces and less support will be provided for it during the hackathon. 
     -     Input: Target specs, binding mode info (SMILES/CCD).
           Output: Binder structures/sequences.
 
