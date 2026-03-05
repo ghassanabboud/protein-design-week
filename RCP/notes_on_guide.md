@@ -1,0 +1,3 @@
+- replaced `chmod +x kubectl && sudo mv kubectl /usr/local/bin/` with the commands from the RCP wiki in intall kubectl section
+- merged steps 2 and 3 from original guide
+- removed `runai kubeconfig set` from guide because it is an unknown runai command for me. is it a Mac thing?
