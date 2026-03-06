@@ -12,7 +12,7 @@ This guide walks you through everything you need to do to successfully run prote
 
 <u>**Note**</u>: A lot of online resources in this guide, e.g RCP's wiki, are only accessible if you're connected to the EPFL network (either on campus or via VPN). You also need to be connected to the network to authenticate with RunAI and access the RCP cluster.
 
----
+<u>**Note on fair distribution of resources**</u>: A limit of 1 A100 GPU per user is directly enforced on RCP. As we are allocated 24 A100 GPUs for the hackathon, this means 2 A100s can be used simultaneously by each team. Please respect this limit by coordinating with your teammates to respect fair distribution. We can track teams' GPU usage.
 
 ## Legal Disclaimer
 
@@ -326,14 +326,14 @@ The same template provided in step 4.2 can be used to launch interactive jobs fo
 
 ### Available Tools
 
-| Tool | Image |
-|------|-------|
-| AlphaFold 3 | `registry.rcp.epfl.ch/proteindesign-containers/af3:2026.1` |
-| Boltz | `registry.rcp.epfl.ch/proteindesign-containers/boltz:2026.1` |
-| CARBonAra | `registry.rcp.epfl.ch/proteindesign-containers/carbonara:2026.1` |
-| Chai-1 | `registry.rcp.epfl.ch/proteindesign-containers/chai:2026.1` |
-| LigandMPNN | `registry.rcp.epfl.ch/proteindesign-containers/ligandmpnn:2026.1` |
-| RFdiffusion3 | `registry.rcp.epfl.ch/proteindesign-containers/rfd3:2026.1` |
+| Tool | Image | Links |
+|------|-------|-------|
+| AlphaFold 3 | `registry.rcp.epfl.ch/proteindesign-containers/af3:2026.1` | [GitHub](https://github.com/google-deepmind/alphafold3), [paper](https://doi.org/10.1038/s41586-024-07487-w)
+| Boltz | `registry.rcp.epfl.ch/proteindesign-containers/boltz:2026.1` | [GitHub](https://github.com/jwohlwend/boltz), [prediction docs](https://github.com/jwohlwend/boltz/blob/main/docs/prediction.md)
+| CARBonAra | `registry.rcp.epfl.ch/proteindesign-containers/carbonara:2026.1` | [GitHub](https://github.com/LBM-EPFL/CARBonAra), [paper](https://www.nature.com/articles/s41467-024-50571-y)
+| Chai-1 | `registry.rcp.epfl.ch/proteindesign-containers/chai:2026.1` | [GitHub](https://github.com/chaidiscovery/chai-lab), [paper](https://www.biorxiv.org/content/10.1101/2024.10.10.615955v1)
+| LigandMPNN | `registry.rcp.epfl.ch/proteindesign-containers/ligandmpnn:2026.1` | [GitHub](https://github.com/dauparas/LigandMPNN), [paper](https://doi.org/10.1101/2023.12.22.573103)
+| RFdiffusion3 | `registry.rcp.epfl.ch/proteindesign-containers/rfd3:2026.1` | [GitHub](https://github.com/RosettaCommons/foundry), [docs](https://subseq.bio/docs/rfdiffusion3), [Docker Hub](https://hub.docker.com/r/rosettacommons/foundry), [paper](https://www.biorxiv.org/content/10.1101/2025.09.18.676967v1)
 
 To switch tools, just change the `-i` image — all your data on `/mnt/scratch` stays the same.
 
@@ -341,17 +341,15 @@ To switch tools, just change the `-i` image — all your data on `/mnt/scratch` 
 
 Using interactive pods, you can also develop code and debug directly on RCP. This tutorial shows use how to use the [Kubernetes extension in VScode to do so](https://wiki.rcp.epfl.ch/home/CaaS/FAQ/how-to-vscode). We have found that on top of the kubernetes extension mentioned in the tutorial, one should also install the "Remote - Containers" extension in VScode for it to work.
 
-Note that this seems to be much harder to set up on WSL.
+Note that this seems to be much harder to set up on WSL. A known fix is to install Kubernetes and runai on the Windows host machine (you'll have one installation on Windows and one on WSL) and then connect to pods from the Windows VScode.
 
 ## 7. Important Notes and troubleshooting tips
 
 - **Interactive jobs have a 12-hour maximum runtime.** Save your work frequently.
 - **Interactive jobs are non-preemptible** — they won't be interrupted (except for hardware failures).
 - **GPU limits**: 1x A100 or 1x V100 per interactive job.
-- **H100/H200 GPUs are not available for interactive jobs** — only for training workloads.
 - **The "I have no name" prompt** is cosmetic — it appears when your UID has no matching `/etc/passwd` entry in the container. Everything still works correctly.
 - **Containers are ephemeral** — only data on `/mnt/scratch` and `/mnt/shared-ro` persists.
-
 
 
 ### Troubleshooting
