@@ -67,7 +67,9 @@ Here is a list of the available models on HF (with a refresher of what they do):
 
 ### b) EPFL's Research Computing Platform (RCP) 🖥️ 
 
-While HF Spaces are great for rapid prototyping and easy access, they have limitations in terms of computational resources and runtime, especially for more complex design tasks. This is where our second computing sponsorship comes in with the incredible [EPFL Research Computing Platform (RCP)](https://www.epfl.ch/research/facilities/rcp/), which provides access to high-performance computing clusters with powerful GPUs and CPUs. We'll use [Docker](https://www.docker.com/) to provide an easy setup of the protein design models on the cluster. More details on how to access and use RCP will be provided during the Saturday morning session!
+While HF Spaces are great for rapid prototyping and easy access, they have limitations in terms of computational resources and runtime, especially for more complex design tasks. This is where our second computing sponsorship comes in with the incredible [EPFL Research Computing Platform (RCP)](https://www.epfl.ch/research/facilities/rcp/), which provides access to high-performance computing clusters with powerful GPUs and CPUs. We'll provide [Docker images](https://www.docker.com/) to provide an easy setup of the protein design models on the cluster.
+
+Our [Getting Started with RCP](RCP/GUIDE.md) guide walks you through local installations, managing your data and running interactive jobs. An overview will be presented during the Saturday morning session! The RCP folder also contains example scripts for running all models we make available on the cluster.
 
 ### c) External Tools 🌴
 
