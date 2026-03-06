@@ -48,3 +48,10 @@ carbonara \
 #TODO it throws an error idk how to solve
 
 #boltz example: -i registry.rcp.epfl.ch/proteindesign-containers/boltz:2026.1
+
+
+boltz predict /mnt/shared-ro/examples/boltz/prot_no_msa.yaml --out_dir /mnt/scratch/boltz_example/
+
+# for more details on configuring runs, run "boltz predict --help" inside the container
+# or consult official repository guide with example configs: https://github.com/jwohlwend/boltz/blob/main/docs/prediction.md
+
