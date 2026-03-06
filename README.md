@@ -23,11 +23,11 @@ The awesome thing about you guys is that you all come from different academic ba
 But fear not you brave bio-soldier! We made some basics survival guides for you to rely on when things seem not to make any sense. In the repo folder `./survival-guides`, you can find two documents: 
 
 - One survival guide [for pure wet-lab biologists](survival-guides/ML-survival-guide-for-biologists.pdf) approaching 🧬💻 computational protein design
-- One survival guide [for ML and computer people](survival-guides/coder-survival-guide-to-biology.pdf) starting to get into the world of ✨biology✨ 
+- One survival guide [for ML and computer people](survival-guides/coder-survival-guide-to-biology.pdf) starting to get into the world of ✨biology✨
 
-(sorry for the emojis, i'm a fan tho)
+You'll also find [Monday's workshop slides](protein-design-basics.pdf), a guide to setup [RFDiffusion3 configs](rfd3_guide) and a tutorial to [using Pymol](survival-guides/PDW-Pymol-tutorial-2026.pdf). Speaking of Pymol, check out the [VScode Protein Viewer](https://marketplace.visualstudio.com/items?itemName=ArianJamasb.protein-viewer) extension for design visualization in your IDE!
 
-So, hopefully these docs will help you navigate the world of protein engineering a bit better!
+Hopefully these docs will help you navigate the world of protein engineering a bit better!
 
 ## 2. Fantastic tools and where to find them
 
