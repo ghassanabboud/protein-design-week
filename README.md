@@ -2,7 +2,7 @@
 
 Through a collaboration between the EPFL student association [SV industry](https://www.linkedin.com/company/sv-industry/posts/?feedView=all) and MAKE project [Designing Life with AI (DLAI)](https://designinglifewithai.ch/), this first edition of Protein Design Week @ EPFL helps students discover the world of computational protein design through lab visits, conferences and a 2-day hackathon!
 
-<img width="1233" height="692" alt="image" src="https://github.com/user-attachments/assets/0b0c2b6e-bb17-4420-84d6-40a686cbe71a" />
+<img width="6912" height="3456" alt="Ai-Panel-PDW-banner-landscape" src="https://github.com/user-attachments/assets/9a982a99-5fd8-41f2-a4f9-47260e427436" />
 
 ## Intro
 
