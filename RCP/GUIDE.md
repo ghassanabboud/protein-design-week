@@ -192,7 +192,6 @@ runai submit <job-name> \
   --attach \
   --node-pools default \
   -g 1 \
-  --run-as-user \
   --existing-pvc claimname=hackathon-proteindesign-scratch-gXX,path=/mnt/scratch \
   --existing-pvc claimname=hackathon-proteindesign-shared-ro,path=/mnt/shared-ro \
   --command -- /bin/bash
