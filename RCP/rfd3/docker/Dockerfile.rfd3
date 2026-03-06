@@ -1,0 +1,45 @@
+FROM nvidia/cuda:12.4.1-devel-ubuntu22.04
+
+# Install system dependencies
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y \
+    software-properties-common \
+    && add-apt-repository ppa:deadsnakes/ppa \
+    && apt-get update && apt-get install -y \
+    python3.12 \
+    python3.12-venv \
+    python3-pip \
+    wget \
+    curl \
+    git \
+    build-essential \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create working directory
+WORKDIR /opt/rfdiffusion3
+RUN python3.12 -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+
+# Upgrade pip and install uv (optional but fast)
+RUN pip install --upgrade pip setuptools wheel
+RUN pip install uv
+
+# Install rc-foundry with all extras
+RUN uv pip install 'rc-foundry[all]'
+
+# Install RFdiffusion3 tooling
+RUN foundry install rfd3
+
+# Download CCD mirror (required)
+RUN mkdir -p /opt/ccd_mirror && \
+    cd /opt/ccd_mirror && \
+    wget -q https://files.wwpdb.org/pub/pdb/data/monomers/components.cif.gz && \
+    gunzip components.cif.gz
+
+# Environment variables
+ENV CCD_MIRROR_PATH=/opt/ccd_mirror/components.cif
+ENV PDB_MIRROR_PATH=/opt/pdb_mirror
+ENV PYTHONPATH="/opt/rfdiffusion3:\$PYTHONPATH"
+
+# Default command
+CMD ["/bin/bash"]
