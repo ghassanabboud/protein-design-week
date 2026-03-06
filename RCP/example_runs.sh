@@ -11,7 +11,7 @@ runai submit <your_job_name> \
     --attach \
     --node-pools default \
     -g 1 \
-    --existing-pvc claimname=hackathon-proteindesign-scratch-g11,path=/mnt/scratch \
+    --existing-pvc claimname=hackathon-proteindesign-scratch-gXX,path=/mnt/scratch \
     --existing-pvc claimname=hackathon-proteindesign-shared-ro,path=/mnt/shared-ro \
     --command -- /bin/bash
 
@@ -45,13 +45,14 @@ carbonara \
     --num_sequences 100 \
     --imprint_ratio 0.5 \
     /mnt/shared-ro/examples/carbonara/2oob.pdb /mnt/scratch/carbonara_example/
-#TODO it throws an error idk how to solve
 
 #boltz example: -i registry.rcp.epfl.ch/proteindesign-containers/boltz:2026.1
-
+# for more details on configuring runs, run "boltz predict --help" inside the container
+# or consult official repository guide with example configs: https://github.com/jwohlwend/boltz/blob/main/docs/prediction.md
 
 boltz predict /mnt/shared-ro/examples/boltz/prot_no_msa.yaml --out_dir /mnt/scratch/boltz_example/
 
-# for more details on configuring runs, run "boltz predict --help" inside the container
-# or consult official repository guide with example configs: https://github.com/jwohlwend/boltz/blob/main/docs/prediction.md
+#chai example: -i registry.rcp.epfl.ch/proteindesign-containers/chai:2026.1
+
+
 
