@@ -324,6 +324,8 @@ runai attach <job-name> -p <project>
 
 The same template provided in step 4.2 can be used to launch interactive jobs for any of the models we make available on RCP by simply changing the image with the `-i` flag. The same storage is mounted in each case as weights for all models are stored in `claimname=hackathon-proteindesign-shared-ro`.
 
+For completeness, each subfolder in the `RCP` folder contains the model's license and the Dockerfile used to build the image. **Please note that you do not need to build the images yourself or run any docker commands for that matter. The Dockerfiles are only provided for your curiosity.** We have uploaded pre-built images for each model to the RCP registry so that they can specified using the `-i` flag.
+
 ### Available Tools
 
 | Tool | Image | Links |
