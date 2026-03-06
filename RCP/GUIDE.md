@@ -277,11 +277,11 @@ Once inside the container, run:
 
 ```bash
 rfd3 design \
-out_dir=/mnt/scratch/rfd3/out \
-inputs=/mnt/shared-ro/rfd3/demo.json  \
-ckpt_path=/mnt/shared-ro/rfd3/rfd3_latest.ckpt \
-n_batches=1 \
-diffusion_batch_size=8
+  out_dir=/mnt/scratch/rfd3/out \
+  inputs=/mnt/shared-ro/examples/rfd3/demo.json  \
+  ckpt_path=/mnt/shared-ro/weights/rfd3/rfd3_latest.ckpt \
+  n_batches=1 \
+  diffusion_batch_size=8
 
 ```
 
