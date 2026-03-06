@@ -12,7 +12,24 @@ This guide walks you through everything you need to do to successfully run prote
 
 <u>**Note**</u>: A lot of online resources in this guide, e.g RCP's wiki, are only accessible if you're connected to the EPFL network (either on campus or via VPN). You also need to be connected to the network to authenticate with RunAI and access the RCP cluster.
 
+---
 
+## Legal Disclaimer
+
+> **By using the container images provided in this repository, you acknowledge and agree to the license terms of each individual software package.** Each tool has its own license — please review them before use. The license files are included in each tool's folder in this repository and are summarized below:
+>
+> | Tool | License | Commercial Use |
+> |------|---------|---------------|
+> | [AlphaFold 3](https://github.com/google-deepmind/alphafold3) | CC-BY-NC-SA 4.0 | Non-commercial only |
+> | [Boltz](https://github.com/jwohlwend/boltz) | MIT | Yes |
+> | [CARBonAra](https://github.com/LBM-EPFL/CARBonAra) | CC-BY-NC-SA 4.0 | Non-commercial only |
+> | [Chai-1](https://github.com/chaidiscovery/chai-lab) | Apache 2.0 | Yes |
+> | [LigandMPNN](https://github.com/dauparas/LigandMPNN) | MIT | Yes |
+> | [RFdiffusion3](https://github.com/RosettaCommons/foundry) | BSD 3-Clause | Yes |
+>
+> **You are solely responsible for ensuring your use complies with these licenses.**
+
+---
 
 ## Prerequisites
 
@@ -205,7 +222,6 @@ runai submit <job-name> \
 | `--attach` | Automatically attach to the pod once running |
 | `--node-pools default` | Use A100 GPUs (default pool). Omit for V100. |
 | `-g 1` | Request 1 GPU |
-| `--run-as-user` | Map your EPFL UID/GID into the container |
 | `--existing-pvc` | Mount existing storage volumes, `path` specifies the location inside the container |
 | `--command -- /bin/bash` | Start an interactive shell |
 
@@ -246,7 +262,6 @@ runai submit rfd3-g11 \
   --attach \
   --node-pools default \
   -g 1 \
-  --run-as-user \
   --existing-pvc claimname=hackathon-proteindesign-scratch-g11,path=/mnt/scratch \
   --existing-pvc claimname=hackathon-proteindesign-shared-ro,path=/mnt/shared-ro \
   --command -- /bin/bash
@@ -308,27 +323,19 @@ runai attach <job-name> -p <project>
 ## Step 6: Switching Between Tools
 
 The same template provided in step 4.2 can be used to launch interactive jobs for any of the models we make available on RCP by simply changing the image with the `-i` flag. The same storage is mounted in each case as weights for all models are stored in `claimname=hackathon-proteindesign-shared-ro`.
-The same storage volumes work with any container image. Simply change the `-i` flag:
 
-```bash
-# RFdiffusion3
--i registry.rcp.epfl.ch/proteindesign-containers/rfd3:2026.1
+### Available Tools
 
-# AlphaFold 3
--i registry.rcp.epfl.ch/proteindesign-containers/af3:2026.1
+| Tool | Image |
+|------|-------|
+| AlphaFold 3 | `registry.rcp.epfl.ch/proteindesign-containers/af3:2026.1` |
+| Boltz | `registry.rcp.epfl.ch/proteindesign-containers/boltz:2026.1` |
+| CARBonAra | `registry.rcp.epfl.ch/proteindesign-containers/carbonara:2026.1` |
+| Chai-1 | `registry.rcp.epfl.ch/proteindesign-containers/chai:2026.1` |
+| LigandMPNN | `registry.rcp.epfl.ch/proteindesign-containers/ligandmpnn:2026.1` |
+| RFdiffusion3 | `registry.rcp.epfl.ch/proteindesign-containers/rfd3:2026.1` |
 
-# Boltz
--i registry.rcp.epfl.ch/proteindesign-containers/boltz:2026.1
-
-# Chai-1
--i registry.rcp.epfl.ch/proteindesign-containers/chai:2026.1
-
-# CARBonAra
--i registry.rcp.epfl.ch/proteindesign-containers/carbonara:2026.1
-
-# LigandMPNN
--i registry.rcp.epfl.ch/proteindesign-containers/ligandmpnn:2026.1
-```
+To switch tools, just change the `-i` image — all your data on `/mnt/scratch` stays the same.
 
 ## Step 6: Developing Code in container with VScode
 
@@ -342,7 +349,7 @@ Note that this seems to be much harder to set up on WSL.
 - **Interactive jobs are non-preemptible** — they won't be interrupted (except for hardware failures).
 - **GPU limits**: 1x A100 or 1x V100 per interactive job.
 - **H100/H200 GPUs are not available for interactive jobs** — only for training workloads.
-- **The "I have no name" prompt** is cosmetic — it appears because `--run-as-user` maps your UID into the container without a matching `/etc/passwd` entry. Everything still works correctly.
+- **The "I have no name" prompt** is cosmetic — it appears when your UID has no matching `/etc/passwd` entry in the container. Everything still works correctly.
 - **Containers are ephemeral** — only data on `/mnt/scratch` and `/mnt/shared-ro` persists.
 
 
