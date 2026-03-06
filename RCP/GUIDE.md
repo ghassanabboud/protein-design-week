@@ -8,11 +8,12 @@ This guide walks you through everything you need to do to successfully run prote
 4. Running interactive jobs
 5. Managing jobs
 6. Developing Code in container with VScode
-7. Important notes and troubleshooting tips
+7. Example pipeline & analysis notebook
+8. Important notes and troubleshooting tips
 
 <u>**Note**</u>: A lot of online resources in this guide, e.g RCP's wiki, are only accessible if you're connected to the EPFL network (either on campus or via VPN). You also need to be connected to the network to authenticate with RunAI and access the RCP cluster.
 
-<u>**Note on fair distribution of resources**</u>: A limit of 1 A100 GPU per user is directly enforced on RCP. As we are allocated 24 A100 GPUs for the hackathon, this means 2 A100s can be used simultaneously by each team. Please respect this limit by coordinating with your teammates to respect fair distribution. We can track teams' GPU usage.
+---
 
 ## Legal Disclaimer
 
@@ -324,18 +325,16 @@ runai attach <job-name> -p <project>
 
 The same template provided in step 4.2 can be used to launch interactive jobs for any of the models we make available on RCP by simply changing the image with the `-i` flag. The same storage is mounted in each case as weights for all models are stored in `claimname=hackathon-proteindesign-shared-ro`.
 
-For completeness, each subfolder in the `RCP` folder contains the model's license and the Dockerfile used to build the image. **Please note that you do not need to build the images yourself or run any docker commands for that matter. The Dockerfiles are only provided for your curiosity.** We have uploaded pre-built images for each model to the RCP registry so that they can specified using the `-i` flag.
-
 ### Available Tools
 
-| Tool | Image | Links |
-|------|-------|-------|
-| AlphaFold 3 | `registry.rcp.epfl.ch/proteindesign-containers/af3:2026.1` | [GitHub](https://github.com/google-deepmind/alphafold3), [paper](https://doi.org/10.1038/s41586-024-07487-w)
-| Boltz | `registry.rcp.epfl.ch/proteindesign-containers/boltz:2026.1` | [GitHub](https://github.com/jwohlwend/boltz), [prediction docs](https://github.com/jwohlwend/boltz/blob/main/docs/prediction.md)
-| CARBonAra | `registry.rcp.epfl.ch/proteindesign-containers/carbonara:2026.1` | [GitHub](https://github.com/LBM-EPFL/CARBonAra), [paper](https://www.nature.com/articles/s41467-024-50571-y)
-| Chai-1 | `registry.rcp.epfl.ch/proteindesign-containers/chai:2026.1` | [GitHub](https://github.com/chaidiscovery/chai-lab), [paper](https://www.biorxiv.org/content/10.1101/2024.10.10.615955v1)
-| LigandMPNN | `registry.rcp.epfl.ch/proteindesign-containers/ligandmpnn:2026.1` | [GitHub](https://github.com/dauparas/LigandMPNN), [paper](https://doi.org/10.1101/2023.12.22.573103)
-| RFdiffusion3 | `registry.rcp.epfl.ch/proteindesign-containers/rfd3:2026.1` | [GitHub](https://github.com/RosettaCommons/foundry), [docs](https://subseq.bio/docs/rfdiffusion3), [Docker Hub](https://hub.docker.com/r/rosettacommons/foundry), [paper](https://www.biorxiv.org/content/10.1101/2025.09.18.676967v1)
+| Tool | Image |
+|------|-------|
+| AlphaFold 3 | `registry.rcp.epfl.ch/proteindesign-containers/af3:2026.1` |
+| Boltz | `registry.rcp.epfl.ch/proteindesign-containers/boltz:2026.1` |
+| CARBonAra | `registry.rcp.epfl.ch/proteindesign-containers/carbonara:2026.1` |
+| Chai-1 | `registry.rcp.epfl.ch/proteindesign-containers/chai:2026.1` |
+| LigandMPNN | `registry.rcp.epfl.ch/proteindesign-containers/ligandmpnn:2026.1` |
+| RFdiffusion3 | `registry.rcp.epfl.ch/proteindesign-containers/rfd3:2026.1` |
 
 To switch tools, just change the `-i` image — all your data on `/mnt/scratch` stays the same.
 
@@ -343,15 +342,28 @@ To switch tools, just change the `-i` image — all your data on `/mnt/scratch` 
 
 Using interactive pods, you can also develop code and debug directly on RCP. This tutorial shows use how to use the [Kubernetes extension in VScode to do so](https://wiki.rcp.epfl.ch/home/CaaS/FAQ/how-to-vscode). We have found that on top of the kubernetes extension mentioned in the tutorial, one should also install the "Remote - Containers" extension in VScode for it to work.
 
-Note that this seems to be much harder to set up on WSL. A known fix is to install Kubernetes and runai on the Windows host machine (you'll have one installation on Windows and one on WSL) and then connect to pods from the Windows VScode.
+Note that this seems to be much harder to set up on WSL.
 
-## 7. Important Notes and troubleshooting tips
+## 7. Example Pipeline & Analysis Notebook
+
+We provide two additional resources to help you get started:
+
+- **[EXAMPLE.md](EXAMPLE.md)** — A full end-to-end pipeline walkthrough covering scaffold generation (RFD3), sequence design (LigandMPNN / CARBonAra), structure prediction (AF3 / Chai / Boltz), and local parsing & ranking.
+- **[analysis.ipynb](analysis.ipynb)** — A Jupyter notebook with parsing, ranking, and visualization logic. It ships with sample data so you can explore the outputs immediately.
+
+These are meant as **suggestions and starting points** — every function and step can be modified to fit your needs. Each group is free to adapt the pipeline, swap tools, change parameters, or build something entirely different. Use what's helpful, ignore or change the rest!
+
+---
+
+## 8. Important Notes and troubleshooting tips
 
 - **Interactive jobs have a 12-hour maximum runtime.** Save your work frequently.
 - **Interactive jobs are non-preemptible** — they won't be interrupted (except for hardware failures).
 - **GPU limits**: 1x A100 or 1x V100 per interactive job.
+- **H100/H200 GPUs are not available for interactive jobs** — only for training workloads.
 - **The "I have no name" prompt** is cosmetic — it appears when your UID has no matching `/etc/passwd` entry in the container. Everything still works correctly.
 - **Containers are ephemeral** — only data on `/mnt/scratch` and `/mnt/shared-ro` persists.
+
 
 
 ### Troubleshooting
@@ -365,3 +377,7 @@ Note that this seems to be much harder to set up on WSL. A known fix is to insta
 | `unknown shorthand flag: 'n'` | Use `--project` instead of `-n` for project/namespace. |
 | `unknown parameter 'ro'` or `'accessmode-rwm'` | Use plain `--existing-pvc claimname=...,path=...` without access mode suffixes. |
 | Job stuck in `Pending` | Check with `runai describe job <name>` — likely GPU quota or node-pool issue. |
+
+---
+
+*Developed by [Benedikt Singer](mailto:benedikt.singer@epfl.ch) with [Claude Opus 4.6](https://www.anthropic.com) (Anthropic).*
