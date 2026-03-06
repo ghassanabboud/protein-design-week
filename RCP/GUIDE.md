@@ -87,35 +87,7 @@ Run the following commands to set up configuration for kubectl, allowing it to r
 curl https://wiki.rcp.epfl.ch/public/files/kube-config.yaml -o ~/.kube/config && chmod 600 ~/.kube/config
 ```
 
-The above command downloads a file should look like this. You can also create the file manually and copy/paste the content from the [RCP wiki](https://wiki.rcp.epfl.ch/home/CaaS/FAQ/how-to-use-runai). Content looks something like this:
-
-```yaml
-apiVersion: v1
-clusters:
-- cluster:
-    certificate-authority-data: <base64-cert>
-    server: https://caas-prod.rcp.epfl.ch:443
-  name: caas-prod.rcp.epfl.ch
-contexts:
-- context:
-    cluster: caas-prod.rcp.epfl.ch
-    user: runai-rcp-authenticated-user
-  name: rcp-caas-prod
-current-context: rcp-caas-prod
-kind: Config
-users:
-- name: runai-rcp-authenticated-user
-  user:
-    auth-provider:
-      name: oidc
-      config:
-        airgapped: "true"
-        auth-flow: remote-browser
-        client-id: runai-cli
-        idp-issuer-url: https://app.run.ai/auth/realms/rcpepfl
-        realm: rcpepfl
-        redirect-uri: https://rcpepfl.run.ai/oauth-code
-```
+The above command downloads a configuration file for RCP. You can also create the file manually and copy/paste the content from the [RCP wiki](https://wiki.rcp.epfl.ch/home/CaaS/FAQ/how-to-use-runai). 
 
 ### 2.2 Activate the kubeconfig
 
@@ -123,7 +95,15 @@ users:
 export KUBECONFIG=$HOME/.kube/rcp-caas-prod.yaml
 ```
 
-> **Tip:** Add this line to your `~/.bashrc` or `~/.zshrc` so it persists across sessions.
+> **Tip:** Add this line to your `~/.bashrc` or `~/.zshrc` so it persists across sessions. You can do so with:
+
+```bash
+# opens your bash configuration file in a text editor
+nano ~/.bashrc
+```
+
+Then add the line `export KUBECONFIG=$HOME/.kube/rcp-caas-prod.yaml` at the end of the file, save with `CTRL + X` and exit. The next time you open a terminal, the kubeconfig will be automatically set.
+
 
 ### 2.3 Verify cluster access using kubectl
 
