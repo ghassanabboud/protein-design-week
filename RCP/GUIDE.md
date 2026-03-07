@@ -107,19 +107,6 @@ curl https://wiki.rcp.epfl.ch/public/files/kube-config.yaml -o ~/.kube/config &&
 
 The above command downloads a configuration file for RCP. You can also create the file manually and copy/paste the content from the [RCP wiki](https://wiki.rcp.epfl.ch/home/CaaS/FAQ/how-to-use-runai). 
 
-### 2.2 Activate the kubeconfig
-
-```bash
-export KUBECONFIG=$HOME/.kube/rcp-caas-prod.yaml
-```
-
-> **Tip:** Add this line to your `~/.bashrc` or `~/.zshrc` so it persists across sessions. You can do so with:
-
-```bash
-# opens your bash configuration file in a text editor
-nano ~/.bashrc
-```
-
 Then add the line `export KUBECONFIG=$HOME/.kube/rcp-caas-prod.yaml` at the end of the file, save with `CTRL + X` and exit. The next time you open a terminal, the kubeconfig will be automatically set.
 
 
