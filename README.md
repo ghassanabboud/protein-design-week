@@ -64,6 +64,7 @@ Here is a list of the available models on HF (with a refresher of what they do):
     -     Input: Target specs, binding mode info (SMILES/CCD).
           Output: Binder structures/sequences.
 
+To make it easier to pipeline different Spaces and to avoid losing your jobs by accidentally closing the tab, you can also interact with the Spaces through their APIs! More details are provided in the [example notebook](hf-api/example_hf_api.ipynb)
 
 ### b) EPFL's Research Computing Platform (RCP) 🖥️ 
 
@@ -117,10 +118,6 @@ The world of computational protein design is rapidly growing and democratizing, 
 If - as a good veteran of protein design - you know other tools to use for the hackathon, feel free to do so, also open a PR to add to this list! We look forward to see your designs on Sunday. 
 
 
-## 3. Useful Protein Designer ToolKit
-
-In the tool-kit folder on the repo you can find a notebook with useful functions and pipelines for (1) preparing your input files that you will feed your favourite design model, and (2) analysing how good your predictions are after your runs. Here you'll find pieplines for things like RMSD, structural analysis, PDB parsing and handling, and more. Have fun! 
-
 ## 4. Further learning resources
 
 Do you want to learn more about computational protein design after the hackathon? Here's a list of resources to keep you busy:
@@ -135,6 +132,6 @@ These are some of many resources. For a more extensive list, Adrian Jasinski's a
 Good luck, and may the best design win!
 
 
-Made with love, by Alexia, Ghassan, Emma, Cris and Asia, with the help of our amazing coaches and partners!
+Made with love, by Alexia, Ghassan, Emma, Cris, Benedikt and Asia, with the help of our amazing coaches and partners!
 
 
