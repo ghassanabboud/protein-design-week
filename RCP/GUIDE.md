@@ -35,7 +35,7 @@ This guide walks you through everything you need to do to successfully run prote
 ## Prerequisites
 
 - An EPFL Gaspar account
-- membership to the a runai department. In your case, you are assigned to a group (e.g., `hackathon-proteindesign-g11`). This automatically makes you a member of the `rcp-runai-hackathon-proteindesign` department. You can verify both memberships on the [EPFL groups application](http://groups.epfl.ch/).
+- membership to the a runai department. In your case, you are assigned to a group (e.g., `hackathon-proteindesign-gXX`). This automatically makes you a member of the `rcp-runai-hackathon-proteindesign` department. You can verify both memberships on the [EPFL groups application](http://groups.epfl.ch/).
 
 - A local machine with Docker installed ([Docker install guide](https://wiki.rcp.epfl.ch/home/CaaS/FAQ/how-to-prepare-environment))
 
@@ -237,7 +237,7 @@ runai delete job <job-name>
 In this example, we build the container using a pre-built image for RFdiffusion3 that we uploaded to the RCP registry. 
 
 ```bash
-runai submit rfd3-g11 \
+runai submit rfd3-gXX \
   --project hackathon-proteindesign-<gaspar_username> \
   -i registry.rcp.epfl.ch/proteindesign-containers/rfd3:2026.1 \
   --interactive \
