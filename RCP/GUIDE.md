@@ -107,18 +107,12 @@ curl https://wiki.rcp.epfl.ch/public/files/kube-config.yaml -o ~/.kube/config &&
 
 The above command downloads a configuration file for RCP. You can also create the file manually and copy/paste the content from the [RCP wiki](https://wiki.rcp.epfl.ch/home/CaaS/FAQ/how-to-use-runai). 
 
-Then add the line `export KUBECONFIG=$HOME/.kube/rcp-caas-prod.yaml` at the end of the file, save with `CTRL + X` and exit. The next time you open a terminal, the kubeconfig will be automatically set.
-
-
 ### 2.3 Verify cluster access using kubectl
 
 ```bash
 kubectl config get-contexts
-kubectl config use-context rcp-caas-prod
 kubectl get ns
 ```
-
-You should see namespaces listed (no `localhost:8080` errors).
 
 ---
 
