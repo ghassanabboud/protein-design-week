@@ -71,6 +71,7 @@ verify your installation with:
 
 ```bash
 kubectl version
+reset
 ```
 
 ### 1.3 Install the RunAI CLI 
@@ -102,6 +103,7 @@ You need a kubeconfig file that tells `kubectl` and `runai` how to reach the RCP
 Run the following commands to set up configuration for kubectl, allowing it to recognize and connect to the RCP cluster:
 
 ```bash
+mkdir $HOME/.kube
 curl https://wiki.rcp.epfl.ch/public/files/kube-config.yaml -o ~/.kube/config && chmod 600 ~/.kube/config
 ```
 
@@ -110,7 +112,7 @@ The above command downloads a configuration file for RCP. You can also create th
 ### 2.3 Verify cluster access using kubectl
 
 ```bash
-kubectl config get-contexts
+kubectl config get-contexts 
 kubectl get ns
 ```
 
