@@ -136,8 +136,6 @@ You should see your project (e.g., `hackathon-proteindesign-<your_gaspar_usernam
 setting your default project allows you to omit the `-p <project>` flag in future commands. It is especially important if you're part of multiple projects (e.g you have access to RCP through another course or lab). In RunAI, your project refers to your personal namespace within a department (in this case `hackathon-proteindesign`).
 
 ```bash
-runai config project <your-project-name>
-# Example:
 runai config project hackathon-proteindesign-<your_gaspar_username>
 ```
 
