@@ -67,7 +67,18 @@ Here is a list of the available models on HF (with a refresher of what they do):
 
 ### b) EPFL's Research Computing Platform (RCP) 🖥️ 
 
-While HF Spaces are great for rapid prototyping and easy access, they have limitations in terms of computational resources and runtime, especially for more complex design tasks. This is where our second computing sponsorship comes in with the incredible [EPFL Research Computing Platform (RCP)](https://www.epfl.ch/research/facilities/rcp/), which provides access to high-performance computing clusters with powerful GPUs and CPUs. We'll use [Docker](https://www.docker.com/) to provide an easy setup of the protein design models on the cluster. More details on how to access and use RCP will be provided during the Saturday morning session!
+While HF Spaces are great for rapid prototyping and easy access, they have limitations in terms of computational resources and runtime, especially for more complex design tasks. This is where our second computing sponsorship comes in with the incredible [EPFL Research Computing Platform (RCP)](https://www.epfl.ch/research/facilities/rcp/), which provides access to high-performance computing clusters with powerful GPUs (A100, V100) and CPUs. We'll provide [Docker images](https://www.docker.com/) to provide an easy setup of the protein design models on the cluster. RCP uses [RunAI](https://www.run.ai/) as its job scheduling platform — you submit containerized jobs via the `runai` CLI, and the platform handles GPU allocation and scheduling for you.
+
+Our [Getting Started with RCP](RCP/GUIDE.md) guide walks you through the full setup, covering:
+1. **Local environment setup** — installing Docker, `kubectl`, and the RunAI CLI
+2. **Cluster access** — configuring `kubeconfig` and authenticating via EPFL SSO
+3. **Data management** — using the jumphost and `rsync` to transfer files to/from your team's scratch storage
+4. **Running interactive jobs** — launching GPU-powered containers with pre-built images for each tool (RFD3, LigandMPNN, AF3, Boltz, Chai, CARBonAra) and mounting persistent storage for your inputs/outputs
+5. **Developing in-container with VSCode** — attaching to running pods for live debugging
+
+An overview will be presented during the Saturday morning session! The RCP folder also contains:
+- **[EXAMPLE.md](RCP/EXAMPLE.md)** — A full end-to-end pipeline walkthrough: scaffold generation (RFD3) → sequence design (LigandMPNN / CARBonAra) → structure prediction (AF3 / Chai / Boltz) → local parsing & ranking, with copy-paste commands for every step.
+- **[analysis.ipynb](RCP/analysis.ipynb)** — A Jupyter notebook for parsing, ranking, and visualizing pipeline outputs. Ships with sample data so you can explore results immediately.
 
 ### c) External Tools 🌴
 
