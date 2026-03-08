@@ -21,7 +21,7 @@ This is useful when you want to:
 ```bash
 runai submit af3-msa-gXX \
   --project hackathon-proteindesign-<gaspar> \
-  -i registry.rcp.epfl.ch/proteindesign-containers/af3:2026.1 \
+  -i registry.rcp.epfl.ch/proteindesign-containers/af3_msa:2026.1 \
   --interactive --attach --node-pools default -g 1 \
   --existing-pvc claimname=hackathon-proteindesign-scratch-gXX,path=/mnt/scratch \
   --existing-pvc claimname=hackathon-proteindesign-shared-ro,path=/mnt/shared-ro \
