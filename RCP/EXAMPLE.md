@@ -212,7 +212,6 @@ make_af3_input() {
   "dialect": "alphafold3",
   "version": 2,
   "modelSeeds": [42],
-  "numDiffusionSamples": 5,
   "sequences": [
     {
       "protein": {
