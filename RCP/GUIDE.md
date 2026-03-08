@@ -44,7 +44,7 @@ This guide walks you through everything you need to do to successfully run prote
 
 We had asked you to set up your local environment during Monday's workshop following [RCP's how-to-prepare-environment tutorial](https://wiki.rcp.epfl.ch/home/CaaS/FAQ/how-to-prepare-environment). Here is a recap:
 
-### 1.1 Install Docker
+### 1.1 Install Docker (only needed for building custom containers)
 
 `Linux`: Follow the instructions for your specific distribution (e.g., Ubuntu, CentOS) in Docker's official install guide [on Linux](https://docs.docker.com/engine/install/). Specifically, you can follow the `Install using the apt repository` section. Docker
 
@@ -106,10 +106,11 @@ Run the following commands to set up configuration for kubectl, allowing it to r
 mkdir $HOME/.kube
 curl https://wiki.rcp.epfl.ch/public/files/kube-config.yaml -o ~/.kube/config && chmod 600 ~/.kube/config
 ```
+Note that you might need to update the path for the kube config.
 
 The above command downloads a configuration file for RCP. You can also create the file manually and copy/paste the content from the [RCP wiki](https://wiki.rcp.epfl.ch/home/CaaS/FAQ/how-to-use-runai). 
 
-### 2.3 Verify cluster access using kubectl
+### 2.3 Verify kubectl installation
 
 ```bash
 kubectl config get-contexts 
